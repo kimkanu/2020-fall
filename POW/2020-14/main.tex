@@ -1,0 +1,45 @@
+\documentclass{homework}
+% \usepackage{lua-visual-debug}
+% \usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath}
+\usepackage{ulem}
+\usepackage{macros-common}
+
+\title{POW 2020-14}
+\subject{POW 2020-14}
+\studentid{2017xxx8}
+\name{Keonwoo Kim}
+\date{\today}
+
+\setstretch{1.0}
+
+\begin{document}
+\maketitle
+
+\noindent\llap{\huge\it Q.\ }Say there are $n$ points. For each pair of points, we add an edge with probability $1/3$. Let $P_n$ be the probability of the resulting graph to be connected (meaning any two vertices can be joined by an edge path). What can you say about the limit of $P_n$ as $n$ tends to infinity?
+
+
+\noindent\llap{\huge\it Sol.\ }\uline{$P_n\to 1$}; in other words, the resulting random graph is asymptotically almost surely connected.
+
+In order to be disconnected for a graph with $n$ vertices, it should be divided into two sets of vertices which have no edges between them. Letting they, say sets $A$ and $B$ which partition the vertex set, have $k$ and $n-k$ vertices respectively, the probability that there are no edges between $A$ and $B$ is $(2/3)^{k (n-k)}$. Since there are $\binom n k$ ways to choose $(A,B)$ for a fixed $k$, $1 - P_n$ is at most
+$$ \sum_{k=1}^{n-1} \binom n k \paren{2\over 3}^{k (n-k)}. $$
+Let $K < n/2$ be a positive integer constant chosen later. Note that we can observe $k(n-k)\ge n-1$ for $1\le k\le n-1$, and $k(n-k)\ge K(n-K)$ for $K\le k\le n-K$, due to the concavity of the quadratic polynomial $x(n-x)$. Moreover, by an application of the Stirling's formula, we have
+$$ \binom{n}{\lfloor n/2 \rfloor} \sim \frac{2^n}{\sqrt{\pi n / 2}} \implies \binom{n}{\lfloor n/2 \rfloor}\le 2^n\quad\text{for $n$ large enough} $$
+Therefore,
+\begin{align*}
+  \sum_{k=1}^{n-1} \binom n k \paren{2\over 3}^{k (n-k)} &= 2\sum_{k=1}^{K-1} \binom n k \paren{2\over 3}^{k (n-k)} + \sum_{k=K}^{n-K} \binom n k \paren{2\over 3}^{k (n-k)}
+  \\ &\le 2\sum_{k=1}^{K-1} n^{K-1} \paren{2\over 3}^{n-1} + \sum_{k=K}^{n-K} \binom n {\lfloor{n/2}\rfloor}\paren{2\over 3}^{K(n-K)}
+  \\ &= 2(K-1)n^{K-1}\paren{2\over 3}^{n-1} + (n - 2K + 1) 2^n \paren{2\over 3}^{K(n-K)}
+\end{align*}
+Here $2(K-1)n^{K-1}\paren{2\over 3}^{n-1} \xrightarrow{n\to\infty} 0$, and 
+$$ (n - 2K + 1) 2^n \paren{2\over 3}^{K(n-K)} = (n-2K+1) \paren{2\over 3}^{-K^2} \paren{2\cdot \paren{2\over 3}^K}^n \xrightarrow{n\to\infty} 0 $$
+whenever $2\cdot \paren{2\over 3}^K < 1$, that is, $K\ge 2$.
+Hence,
+\begin{align*}
+  1 - P_n \le \sum_{k=1}^{n-1} \binom n k \paren{2\over 3}^{k (n-k)} \xrightarrow{n\to\infty} 0 
+\end{align*}
+proving $P_n\to 1$.
+
+
+
+\end{document}

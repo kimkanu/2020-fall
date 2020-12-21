@@ -1,0 +1,31 @@
+\documentclass{homework}
+% \usepackage{lua-visual-debug}
+\usepackage{amsmath, amssymb}
+\usepackage[normalem]{ulem}
+\usepackage{macros-common}
+\usepackage[bb]{macros-prob}
+
+\title{Reading Assignment \#5}
+\subject{CS341 Introduction to Computer Networks}
+\studentid{20170058}
+\name{Keonwoo Kim}
+\date{\today}
+
+\setstretch{1.0}
+
+\begin{document}
+\maketitle
+
+
+These days, the presence of mobility management is crucial. Without it, customers would have to give up to use network services or buy a new SIM card when moving to another location. However, current mobility management system, such as one in LTE, is centralized in nature. A problem in centralized mobility management is that it might not be able to deal with exponentially growing amount of devices. To resolve this issue, mobility management should be decentralized, flexible, and scalable. With this regard, the authors introduces the concept of Mobility Management as a Service (MMaaS.)
+
+With the SDN and NFV techniques, mobility management can be softwarized and it permits the operators to provide the services on-demand. This concept is called MMaaS. Briefly, the SDN controller is connected to OF switches with its SBI, and it is also connected to mobility management applications through its NBI. To provide a mobility management solution, first SDN-C enquires parameter information to OF switches and access networks. When it got parameter values, it sends them to the mobility management application to acquire the solution. Finally, it implements MM rules.
+
+MMaaS can provide multiple avenues of granularity of service, while other existent architectures can only implement per-MN granularity in service. It is beneficial to the network throught its equipment of flexibility and scalability which eventually increases the quality of service. Considering users with different mobility profiles such as speed, different flow properties such as delay-tolerantness, different network loads, and to give different weights to certain network aspects, supporting various avenues of granularity of service is important pros of MMaaS.
+
+The authors also described some challenges of MMaaS to make it adopted. These include computational resource management, computational complexity, control plane latency, and network slicing support.
+
+Based on the comparison table in the paper, the approach of MMaaS is clearly beneficial compared to other legacy methods. As challenges being resolved, the future of the computer network technologies such as 5G networks would be significantly better than now. 
+
+
+\end{document}

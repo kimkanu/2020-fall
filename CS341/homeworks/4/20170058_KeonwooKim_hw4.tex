@@ -1,0 +1,75 @@
+\documentclass{homework}
+% \usepackage{lua-visual-debug}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{ulem}
+\usepackage{macros-common}
+\usepackage{float}
+\usepackage[bb]{macros-prob}
+
+\title{Homework \#4}
+\subject{CS341 Introduction to Computer Networks}
+\studentid{20170058}
+\name{Keonwoo Kim}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\parindent=0pt
+
+\solution{
+  a. Node A's average throughput is $p_A(1-p_B)$. Similarly, Node B's average throughput is $p_B(1-p_A)$. Therefore, The total efficiency of the protocol with Nodes A and B is $p_A(1-p_B) + p_B(1-p_A)$.
+  
+  b. Node A's average throughput is $2p_B(1-p_B) = 2p_B - 2p_B^2$ and Node B's average throughput is $p_B(1-2p_B)=p_B-2p_B^2$, which are not in relation of a multiple by 2. To make Node A's average throughput be a twice of Node B's average throughput,
+  $$ p_A(1-p_B) -2p_B(1-p_A) = p_A(1 - 3p_B) - 2p_B = 0 \implies p_A = \frac{2p_B}{1-3p_B}.$$
+
+  c. The average throughput of Node A is $2p(1-p)^{N-1}$, and the average throughput of any other node is $p(1-p)^{N-2}(1-2p)$.
+}
+
+\solution{
+ a) No, because Host E can know that Host F is in the same LAN as host E by checking the subnet mask. Thus,
+  \begin{itemize}
+    \item source IP: IP of Host E
+    \item dest'n IP: IP of Host F
+    \item source MAC address: MAC address of Host E
+    \item dest'n MAC address: MAC address of Host F
+  \end{itemize}
+  b) No, because Host E does not use MAC address of Host B and it sends an IP datagram to the router R1. In this case,
+  \begin{itemize}
+    \item source IP: IP of Host E
+    \item dest'n IP: IP of Host B
+    \item source MAC address: MAC address of Host E
+    \item dest'n MAC address: MAC address of R1's interface connecting to Subnet 3
+  \end{itemize}
+  c) Since the message is a broadcast message, S1 will broadcast the ARP request message through both links to Subnet 1 and Subnet 2. Therefore, R1 will receive the ARP request message. However, it will not be forwarded to Subnet 3.
+
+  Host B will not send an ARP query message to ask for A's MAC address, because Host B already knows the MAC address of Host A from the query message that Host A had sent.
+
+  S1 will add Host B in the forwarding table, and it will drop the frame because Host B and Host A are in the same subnetwork.
+}
+
+\solution{\\
+  \begin{tabular}{r|l}
+    Time (bit times) & Event \\ \hline
+    0 & A and B start transmission \\
+    245 & A and B detect collision \\
+    $293=245+48$ & A and B finish transmitting jam signal \\
+    $538=293+245$ & A receives the last bit of B, so A detects an idle channel \\
+    $634=538+96$ & A starts transmission (idle bit time is 96 bit times) \\
+    $879=634+245$ & A's transmission reaches B \\ \hline
+    $805=293+512$ & B returns to step 2 after $512K_B$ bit times after detecting collision \\
+    $901=805+96$ & B starts transmitting
+  \end{tabular}
+  So B's retransmission starts after the arrival of A's retransmission, so they do not collide.
+}
+
+\solution{
+  Let Host A be in EE department and Host B in CS department, and Host A want to send an IP datagram to Host B. Host A first encapsulates the IP datagram to Host B's IP address and the MAC address of the router's interface card connecting to port 1 as the destination MAC address. When the router receives the frame, it passes it up to IP layer to decide which subnet the IP datagram should be forwarded to. The router sets the 802.1q tag VLAN ID as the one of the subnet of CS department, encapsulates the IP datagram into a frame and sends it to port 1. Then the switch determines that the frame should be forwarded to Host B in the CS department. Once Host B receives the frame, it removes the 802.1q tag.
+}
+
+\solution{
+  The time required to send a frame without data is $T_0=\,$256 bits / 11 Mbps = 23.273 microseconds, and the time required to send a frame with data is $T_1=\,$(8000 + 256) bits / 11 Mbps = 750.545 microseconds. Note that times required to send RTS, CTS, and ACK are all $T_0$ and the time required to send the frame with the data is $T_1$. Therefore, the total time required is $DIFS + T_0 + SIFS + T_0 + SIFS + T_1 + SIFS + T_0 = DIFS + 3\times SIFS + 820.364 \text{\,\mu s}.$ 
+}
+
+
+\end{document}

@@ -31,16 +31,16 @@
 
   \item How many data-containing TCP segments were needed to carry the single HTTP response?
   
-  \textsf{[Answer]} There were 3 TCP segments containing data for the html file, namely \#10, \#12, and \#14.
+  \textsf{[Answer]} There were 2 TCP segments containing data for the html file, namely \#6 and \#8.
 
   \item What is the status code and phrase associated with the response to the HTTP GET request?
   
-  \textsf{[Answer]} \#10: the status code was \texttt{200}, and the status text was \texttt{OK}. \\
-  \#12: the status code was \texttt{404}, and the status text was \texttt{Not found}.
+  \textsf{[Answer]} Req \#4, resp \#8: the status code was \texttt{200}, and the status text was \texttt{OK}. \\
+  Req \#10, resp \#11: the status code was \texttt{404}, and the status text was \texttt{Not found}.
 
-  \item Are there any HTTP status lines in the transmitted data associated with a TCP induced “Continuation”?
+  \item Which packet number in the trace contains the GET message for the Bill \underline{of} Rights?
   
-  \textsf{[Answer]} No. (Only the text \texttt{Continuation} is sent.)
+  \textsf{[Answer]} \#4
 
   \newpage
 

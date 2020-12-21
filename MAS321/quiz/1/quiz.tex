@@ -1,0 +1,112 @@
+\documentclass{homework}
+\usepackage{macros-common}
+\usepackage{amsmath, amsfonts, xcolor, cancel}
+% \usepackage{lua-visual-debug}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\title{Quiz \#1}
+\subject{MAS321 Introduction to Differential Geometry}
+\studentid{20170058}
+\name{Keonwoo Kim}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\let\bs\boldsymbol
+
+\solution[1]{
+  (Exercise 1.5)
+
+  Since the $i$-th coordinate of $\bs\gamma'(t)$ is $x_i'(t) = \lim_{h\to 0}\frac{x_i(t+h) - x_i(t)}h$, for any $\varepsilon>0$, there is a positive real number $\delta_i(\varepsilon) > 0$ such that 
+  $$\abs{\frac{x_i(t+h)-x_i(t)}h - x_i'(t)} < \varepsilon$$
+  whenever $|h|<\delta_i(\varepsilon)$. Hence, for any $\varepsilon > 0$, 
+  \begin{align*}
+    \abs{\frac{\bs\gamma(t+h) - \bs\gamma(t)}{h} - \bs\gamma'(t)} &= \sqrt{\sum_{i=1}^n \abs{\frac{x_i(t+h)-x_i(t)}h - x_i'(t)}^2}
+    \\&<\sqrt{\sum_{i=1}^n \paren{\frac \varepsilon {\sqrt n}}^2} = \varepsilon
+  \end{align*}
+  whenever $|h|<\min_{i=1,\cdots,n}\delta_i(\varepsilon/\sqrt n)$. Therefore, we have
+  $$ \bs\gamma'(t) = \lim_{h\to 0} \frac{\bs\gamma(t+h) - \bs\gamma(t)}h. $$
+}
+
+\solution[2]{
+  (Exercise 1.22)
+
+  When $\bs\gamma'(t)$ is orthogonal to $\bs\gamma(t)$ for any $t\in I$, we have $\angl{\bs\gamma'(t), \bs\gamma(t)} = 0$ for any $t\in I$. Note that
+  $$ \frac{d}{dt} \angl{\bs\gamma(t), \bs\gamma(t)} = 2\angl{\bs\gamma'(t), \bs\gamma(t)} = 0,$$
+  hence $\angl{\bs\gamma(t), \bs\gamma(t)}$ is a constant on $I$. Since $\angl{\bs\gamma(t), \bs\gamma(t)} \ge 0$, there is a real number $C\ge 0$ such that
+  $|\bs\gamma(t)|^2 = \angl{\bs\gamma(t), \bs\gamma(t)} = C^2$, which means $|\bs\gamma(t)| = C$ for any $t\in I$. Thus, the converse of the part (1) in Proposition 1.17 holds.
+}
+
+\solution[3]{
+  (Exercise 1.36)
+
+  Answer: $f$ is not independent of parametrization.
+
+  Without loss of generality, consider the case that $\bs\gamma$ is a unit speed parametrized curve. Let $\tilde{\bs\gamma}$ be a (regular) reparametrization of $\bs\gamma$, that is, $\tilde{\bs\gamma} = \bs\gamma \circ \phi$ for some smooth bijection $\phi$ with nonvanishing derivative. Then,
+  $$ \tilde{\bs\gamma}'(t) = \bs\gamma'(\phi(t))\phi'(t) ,$$
+  and
+  $$ \tilde{\bs\gamma}''(t) = \bs\gamma''(\phi(t))(\phi'(t))^2 + \bs\gamma'(\phi(t))\phi''(t).$$
+  Since $\bs\gamma$ is a unit speed curve, $\angl{\bs\gamma'(t), \bs\gamma'(t)} = 1$ so that $\angl{\bs\gamma'(t), \bs\gamma''(t)} = 0$ by differentiating both sides.
+  Now we have
+  \begin{align*}
+    |\tilde{\bs\gamma}''(t)|^2 &= \angl{\tilde{\bs\gamma}''(t), \tilde{\bs\gamma}''(t)}
+    \\&= \angl{\bs\gamma''(\phi(t))(\phi'(t))^2 + \bs\gamma'(\phi(t))\phi''(t), \bs\gamma''(\phi(t))(\phi'(t))^2 + \bs\gamma'(\phi(t))\phi''(t)}
+    \\&= (\phi'(t))^4\angl{\bs\gamma''(\phi(t)), \bs\gamma''(\phi(t))} + (\phi''(t))^2 \angl{\bs\gamma'(\phi(t)), \bs\gamma'(\phi(t))}
+    \\&= (\phi'(t))^4 |\bs\gamma''(\phi(t))|^2 + (\phi''(t))^2.
+  \end{align*}
+  Since $|\tilde{\bs\gamma}'(t)| = |\phi'(t)|$, we have
+  $$ \frac{|\tilde{\bs\gamma}''(t)|^2}{|\tilde{\bs\gamma}'(t)|^4} = |\bs\gamma''(\phi(t))|^2 + \frac{(\phi''(t))^2}{|\phi'(t)|^4} = f(\phi(t))^2 + \frac{(\phi''(t))^2}{|\phi'(t)|^4}. $$
+  Therefore, for a reparametrization such that $\phi''(t)\ne 0$, $f(t)$ is \textbf{not} independent of parametrization. 
+}
+
+\solution[4]{
+  (Exercise 1.54)
+
+  By the definition of the signed curvature, we have
+  $$ \kappa_s(t) = \frac{\angl{\mathbf a(t), R_{90}(\mathbf v(t))}}{|\mathbf v(t)|^3}. $$
+  Within the polar coordinate system $(r,\theta)_\angle = (r\cos\theta, r\sin\theta)$, we have
+  $$ R_{90}((r, \theta)_\angle) = (r,\theta + \pi/2)_\angle. $$
+  Also, $\frac{d}{d\theta}(\cos\theta, \sin\theta) = (-\sin\theta,\sin\theta) = R_{90}(\cos\theta, \sin\theta).$
+  Hence, we have
+  \begin{align*}
+    \mathbf v(\theta) &= \frac{d}{d\theta} [r(\theta)(\cos\theta, \sin\theta)] 
+    \\&= r'(\theta)(\cos\theta, \sin\theta) + r(\theta) (-\sin\theta,\cos\theta)
+    \\&=( r'(\theta)\cos\theta- r(\theta) \sin\theta,  r'(\theta)\sin\theta+ r(\theta) \cos\theta)
+  \end{align*}
+  and
+  \begin{align*}
+    \mathbf a(\theta) &= \frac{d}{d\theta} \mathbf v(\theta) 
+    \\&= r''(\theta)(\cos\theta,\sin\theta) + 2r'(\theta)(-\sin\theta,\cos\theta) - r(\theta)(\cos\theta,\sin\theta).
+    \\&= (r''(\theta)\cos\theta- 2r'(\theta)\sin\theta- r(\theta)\cos\theta,r''(\theta)\sin\theta+2r'(\theta)\cos\theta- r(\theta)\sin\theta).
+  \end{align*}
+  Furthermore,
+  \begin{align*}
+    R_{90}(\mathbf v(t)) &= R_{90}(r'(\theta)(\cos\theta, \sin\theta)) + R_{90}(r(\theta) (-\sin\theta,\cos\theta))
+    \\&= R_{90}((r'(\theta),\theta)_\angle) + R_{90}((r(\theta),\theta + \pi/2)_\angle)
+    \\&=(r'(\theta),\theta+\pi/2)_\angle + (r(\theta),\theta + \pi)_\angle
+    \\&=r'(\theta)(-\sin\theta,\cos\theta) - r(\theta)(\cos\theta,\sin\theta)
+    \\&=(-r'(\theta)\sin\theta - r(\theta)\cos\theta,r'(\theta)\cos\theta- r(\theta)\sin\theta).
+  \end{align*}
+  since $R_{90}$ is linear.
+  Therefore,
+  \begin{align*}
+    &\angl{\mathbf a(t) , R_{90}(\mathbf v(t))} 
+    \\&\quad = (r''(\theta)\cos\theta- 2r'(\theta)\sin\theta- r(\theta)\cos\theta)(-r'(\theta)\sin\theta - r(\theta)\cos\theta) 
+    \\&\qquad +(r''(\theta)\sin\theta+2r'(\theta)\cos\theta- r(\theta)\sin\theta)(r'(\theta)\cos\theta- r(\theta)\sin\theta)
+    \\ &\quad =\cancel{-r''r'cs}+2(r')^2s^2+\cancel{r'rcs} - r''rc^2 + \cancel{2r'rcs} + r^2c^2 
+    \\ &\qquad + \cancel{r''r'cs} + 2(r')^2 c^2 - \cancel{r'rcs} - r''rs^2 - \cancel{2r'rcs} + r^2s^2
+    \\ &\quad =  2(r'(\theta))^2 - r''(\theta)r(\theta) + r(\theta)^2
+  \end{align*}
+  where $r=r(\theta), r'=r'(\theta), r''=r''(\theta), c=\cos\theta,$ and $s=\sin\theta$.
+  Since 
+  \begin{align*}
+    |\mathbf v(\theta)|^2 &= (r'c - rs)^2 + (r's+rc)^2 
+    \\&= (r')^2c^2 -\cancel{ 2r'rcs} + r^2s^2 + (r')^2s^2 + \cancel{2r'rcs} + r^2c^2
+    \\&= (r'(\theta))^2 + (r(\theta))^2, 
+  \end{align*}
+  we have
+  $$\kappa_s(\theta) = \frac{2(r'(\theta))^2 - r''(\theta)r(\theta) + r(\theta)^2}{((r'(\theta))^2 + (r(\theta))^2)^{3/2}}. $$
+}
+
+\end{document}

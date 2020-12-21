@@ -1,0 +1,53 @@
+\documentclass{homework}
+% \usepackage{lua-visual-debug}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{ulem}
+\usepackage{macros-common}
+\usepackage[bb]{macros-prob}
+
+\title{Homework \#1}
+\subject{CS341 Introduction to Computer Networks}
+\studentid{20170058}
+\name{Keonwoo Kim}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\solution{
+  A. $(20-1)\times 15$ seconds after the first car starts to pass the first toll booth, the last car in the caravan starts to pass the toll booth. From this moment, it takes $4\times 15\text{\,sec} + 3 \times 100 \text{\,km}/(50\text{\,km/h}) = 6\text{\,h 1\,min}.$ Thus, the end-to-end delay is $6\text{\,h 1\,min} + (19\times 15\,\text{sec}) = \uline{6\text{\,h 5\,min 45\,sec}}.$
+
+  \noindent B. Similarly, the end-to-end delay is $6\text{\,h 1\,min} + ((16-1)\times 15\,\text{secs}) = \uline{6\text{\,h 4\,min 45\,sec}}.$
+}
+
+\solution{
+  A. $d_\text{prop} = m/s\,sec.$\\
+  B. $d_\text{trans} = L/R\,sec.$\\
+  C. $d_\text{end-to-end} = d_\text{trans} + d_\text{prop} = (L/R + m/s)\,sec.$\\
+  D. At the time $t = d_\text{trans}$, the router just finished transmitting the last bit of the packet and are ready to propagate it to the host B. Therefore, the last bit of the packet is yet \uline{at the host A}.\\
+  E. \uline{On the link}, because it takes longer to propagate the first bit than to transmit all of the bits in the packet, which is done at the time $d=\text{trans}$.\\
+  F. \uline{At the host B}, because when the transmission is completed, the propagation of the first bit is already done since the propagation delay is less than the transmission delay.\\
+  G. From $m/s = L/R$, we have $$m = sL/R = \frac{2\times 10^8\text{\,m/s} \cdot 150\text{\,bits}}{60\times 10^3 \,\text{bits/sec}} = \uline{50\,\text{km}}.$$
+}
+
+\solution{
+  A. $6\,\text{Mbps} / (200\,\text{kbps/users}) = \uline{30\,\text{users}}$.\\
+  B. Let $X$ be the number of users transmitting simultaneously, then $X\sim \mathrm{Bin}(100, 0.05)$ so that
+  $$ \P{X=n} = \binom{100}n \cdot 0.05^n \cdot 0.95^{100-n},\qquad 0\le n\le 100. $$
+}
+
+\solution{
+  A. The transmission delay in this case is $L/R = (12\times 10^6\,\text{bits})/(2\,\text{Mbps}) = \uline{6\,\text{sec}}$. Since there are 3 links in total, to move the message from one end to another, we need \uline{18 seconds}.\\
+  B. From the first host to the first packet switch, it takes $$L/R = (4000\,\text{bits})/(2\,\text{Mbps}) = \uline{2\,\text{ms}}.$$ After 2ms the first packet was sent, the second packet starts to be sent. Therefore, the second packet will be fully received at the first packet switch at the time $t = 2\,\text{ms}+2\,\text{ms} = \uline{4\,\text{ms}}$. \\
+  C. When we have $n$ packets in total, the last packet is starting to be sent from the first host at the time $t = (n-1)\times 2\,\text{ms}$, and it takes $3\times 2\,\text{ms}$ to transmit the last packet. Hence we need $(n+2)\times 2\,\text{ms}$ in total. Since $n=3000$ in our case, it takes \uline{$6.004$ seconds} to transmit the message fully. It is \uline{almost 3 times shorter than (A)}, the delay of the case without using message segmentation.
+}
+
+\solution{
+  A. Yes, it found the document, where the HTTP status code `200 OK' implies that. The document reply is provided on March 7, 2008 at 12:39:45 GMT.\\
+  B. On December 10, 2005 at 18:27:46 GMT.\\
+  C. 3874 bytes.\\
+  D. \uline{<!doc}. The server agreed to a persistent connection, as the Connection header was set to `Keep-Alive.'
+}
+
+
+\end{document}

@@ -1,0 +1,94 @@
+\documentclass{homework}
+% \usepackage{lua-visual-debug}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{ulem}
+\usepackage{macros-common}
+\usepackage{float}
+\usepackage[bb]{macros-prob}
+
+\title{Homework \#3}
+\subject{CS341 Introduction to Computer Networks}
+\studentid{20170058}
+\name{Keonwoo Kim}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\parindent=0pt
+
+\solution{
+  a.
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{cc}
+      Destination Address Range  & Link Interface \\ \hline
+    \texttt{11100000 00****** ******** ********} & 0 \\
+    \texttt{11100000 01000000 ******** ********} & 1 \\
+    \texttt{1110000* ******** ******** ********} & 2 \\
+    \texttt{11100001 1******* ******** ********} & 3 \\
+    otherwise & 3
+    \end{tabular}
+  \end{table}
+
+  b. The first one starts with \texttt{10001}, which is not matched with the first four entries in the table. Therefore, this one is linked to 3.
+
+  The second one starts with \texttt{11100001}, so the first two entries in the table is not selected. And since it starts with \texttt{11100001 0}, the fourth entry is not selected. Therefore, the link interface 2 is appropriate for this destination address.
+
+  For the last one, it starts with \texttt{11100001 1}, so it is linked to the link interface 3.
+}
+
+\solution{
+  Since $128 = \texttt{0b\uline{10}000000}$, one example of an IP address in the subnet (different from 128.119.40.128) is 128.119.40.156, as $156 = \texttt{0b\uline{10}011100}.$
+
+  To divide the subnet equally, we can think of the following four subnets:
+  \begin{itemize}
+    \item 128.119.40.128/28 ($128 = \texttt{0b\uline{10}000000}$)
+    \item 128.119.40.144/28 ($144 = \texttt{0b\uline{10}010000}$)
+    \item 128.119.40.160/28 ($160 = \texttt{0b\uline{10}100000}$)
+    \item 128.119.40.176/28 ($176 = \texttt{0b\uline{10}110000}$)
+  \end{itemize}
+}
+
+\solution{
+  Since the IP header takes 20 bytes, each fragment has 680 bytes of the original data. Note that the datagram which will be fragmented has 2380 bytes without the IP header, so the number of fragments generated is $\lceil 2380/680\rceil = 4.$
+
+  The identification number of each fragment is 422. The size of each fragment except the last one is 700, and the last one has $20 + (2380 - 680\times 3) = 360$ bytes. The offsets of the 4 fragments will be 0, 85, 170, 255, because $680/8=85.$ The \texttt{flag} of first 3 fragments are all 1, and for the last one, it is 0.
+}
+
+\solution{
+  a. 10.0.0/24 will be changed to 192.168.1/24, so the interfaces in the home network are 192.168.1.1, 192.168.1.2, and 192.168.1.3 for the rightmost devices, and 192.168.1.4 for the router.
+
+  b.
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{cc}
+      WAN side & LAN side \\
+      24.34.112.235, 5001 & 192.168.1.1, 3345 \\
+      24.34.112.235, 5002 & 192.168.1.1, 3346 \\
+      24.34.112.235, 5003 & 192.168.1.2, 3345 \\
+      24.34.112.235, 5004 & 192.168.1.2, 3346 \\
+      24.34.112.235, 5005 & 192.168.1.3, 3345 \\
+      24.34.112.235, 5006 & 192.168.1.3, 3346 \\
+    \end{tabular}
+  \end{table}
+}
+
+\solution{
+  a. The path from x to 3c is x -- 4a -- 4b -- 4c -- 3c, so 3c learns about prefix x from the external routing protocol, which is \uline{eBGP}.
+
+  b. The path from x to 3a is x -- \dots -- 3b -- 3a, so 3a learns about prefix x from the internal routing protocol, which is \uline{iBGP}.
+
+  c. The path from x to 1c is x -- \dots -- 3a -- 1c, so !c learns about prefix x from the external routing protocol, which is \uline{eBGP}.
+  
+  d. The path from x to 1d is x -- \dots -- 1a -- 1d, so 1d learns about prefix x from the internal routing protocol, which is \uline{iBGP}.
+}
+
+\solution{
+  Since A would like to have the traffic destinated to W to come from B only, the AS-path A -- W is advertised to B only. The AS-path A -- V is advertised to both B and C.
+  
+  C receives an AS-path A -- V directly from A. Also, since C has a peering relation with B, it receives the AS-paths B -- A -- V and B -- A -- W.
+}
+
+
+\end{document}

@@ -1,0 +1,42 @@
+\documentclass{homework}
+% \usepackage{lua-visual-debug}
+\usepackage{amsmath, amssymb}
+\usepackage[normalem]{ulem}
+\usepackage{macros-common}
+\usepackage[bb]{macros-prob}
+\usepackage[a4paper, total={6in, 8.8in}]{geometry}
+
+\title{Reading Assignment \#4}
+\subject{CS341 Introduction to Computer Networks}
+\studentid{20170058}
+\name{Keonwoo Kim}
+\date{\today}
+
+\setstretch{1.0}
+
+\begin{document}
+\maketitle
+
+
+The paper introduces a new concept called the \emph{knowledge plane}. As the Internet grows bigger and bigger, due to its broad and changing nature, application-specific networks are not appropriate for Internet. It is better to use a separate construct that maintains in a high level view and provides services needed for other networks. This is what the authors call the `knowledge plane,' or KP. KP has the following attributes different from current practice:
+\begin{itemize}
+  \item New construct: The data plane uses layering to hide complexity and allow extensions and interoperations. But the control and management system scales poorly as the management plane is all-seeing. These two existing planes are completely different, so one needs a brand new concept generalizing those.
+  \item Edge involvement: KP reaches more broadly than the end-to-end principle.
+  \item Global network: Ideally, the KP would be able to extend itself to the whole global world.
+  \item Compositional structure: Multiple KP's can make a composition.
+  \item Unified approach: The KP should be structured based on the knowledge, not the task, so that they are made similarly.
+  \item Cognitivity: The KP needs to decide with partial or conflicting information cognitively. So, the foundation of the KP should be able to learn, represent, and reason. It should be useful to determine in the presence of incomplete, inconsistent, and possibly malicious information. Also, It should behave properly with conflicting or inconsistent higher-level goals proposed by multiple stakeholders. Moreover, it must operate effectively with general situation, such as new technologies and applications.
+\end{itemize}
+
+The core thing in the foundation of the KP is that it is able to integrate behavioural models and logical reasoning into a distributed environment. Thus, it should support the creation, storage, propagation and discovery of information: it includes observations, assertions, and explanations. To learn about and alter the environment, the KP have to manage sensors, producing observations, and actuator, changing the environment.
+
+The KP does reasoning about trust and robustness, routing on data and knowledge, and its regional structure is cross- and multidomain. Due to its properties, the KP can be a high-level network management.
+
+
+
+
+
+
+
+
+\end{document}

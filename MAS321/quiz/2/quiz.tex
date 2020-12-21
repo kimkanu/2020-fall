@@ -1,0 +1,83 @@
+\documentclass{homework}
+\usepackage{macros-common}
+\usepackage{amsmath, amsfonts, xcolor, cancel}
+% \usepackage{lua-visual-debug}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\title{Quiz \#2}
+\subject{MAS321 Introduction to Differential Geometry}
+\studentid{20170058}
+\name{Keonwoo Kim}
+\date{\today}
+
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+
+\let\bs\boldsymbol
+
+\solution[1]{
+  (Exercise 3.40)
+
+  When $f$ is a constant function, then $df_p(v) = (f\circ \gamma)'(0)$ for some curve $\gamma$ where $\gamma(0) = p$ and $\gamma'(0)=v$. Since $f$ is a constant function, so is $f\circ\gamma$, which implies $df_p(v) = 0$.
+
+  Conversely, suppose that $df_p(v) = 0$ for any $p\in S$ and $v\in T_p S$. Suppose $f$ is not a constant, meaning that there are two points $p_1$ and $p_2$ on $S$ where $f(p_1)\ne f(p_2)$. Since $S$ is path-connected and regular, there is a smooth curve $\gamma$ passing through $p_1$ and $p_2$, that is, $\gamma(0) = p_1$ and $\gamma(1) = p_2$. Note that $df_{\gamma(t)}(\gamma'(t)) = (f\circ \gamma)'(t)$ for $t\in (0,1)$ so that 
+  $$ \int _0^1 df_{\gamma(t)}(\gamma'(t)) \,dt = (f\circ \gamma)(1) - (f\circ \gamma)(0) = q - p \ne \mathbf 0.$$
+  Therefore, there is a point $p = \gamma(t)$ and a vector $v = \gamma'(t) \in T_pS$ where $df_{p}(v) \ne 0.$ This completes the proof.
+}
+
+\newpage 
+\solution[2]{
+  (Exercise 3.55)
+
+  $f$ preserves the orientation.
+
+  $v_1=(1,0,0),v_2=(0,1,0),B = \{v_1,v_2\}$ is a positively oriented ordered basis of $\mathcal V$, since $(v_1\times v_2)/|v_1\times v_2| = (0,0,1)$ agrees with the orientation of $\mathcal V$. By $f$, $f(v_1)=(0,0,1)$ and $f(v_2) = (0,1,0)$, which yield a positively oriented ordered basis of $\tilde{\mathcal V}$: $(f(v_1)\times f(v_2))/|f(v_1)\times f(v_2)| = (-1,0,0)$. Therefore, $f$ preserves the orientation.
+}
+
+\newpage 
+\solution[3]{
+  (Exercise 3.81)
+
+  When $f$ is an isometry, the length of $f\circ \gamma$ is as follows:
+  \begin{align*}
+    \textrm{arc length}(f\circ \gamma) &= \int_a^b \sqrt{\abs{(f\circ\gamma)'(t)}^2}\,dt
+    \\&= \int_a^b \sqrt{\abs{(f\circ\gamma)'(t)}^2}\,dt
+    \\&= \int_a^b \sqrt{\angl{df_{\gamma(t)}(\gamma'(t)), df_{\gamma(t)}(\gamma'(t))}}\,dt
+    \\&= \int_a^b \sqrt{\angl{\gamma'(t), \gamma'(t)}}\,dt
+    \\&= \textrm{arc length}(\gamma) 
+  \end{align*}
+
+  To prove the converse, suppose $f$ is not an isometry. Then, there are $p\in S_1$ and $x\in T_pS_1$ where $|x|_p^2 \ne |df_p(x)|^2_{f(p)}$. Pick a regular curve $\gamma\colon [a,b]\to S_1$, where $\gamma(a) = p$ and $\gamma'(a) = x$. Choose $\delta>0$ small enough to satisfy the following: $|\gamma'(a + \eta)|_p^2 - |df_{\gamma(a + \eta)}(\gamma'(a + \eta))|_{f(\gamma(a + \eta))}$ has the same sign with $|x|_p^2 - |df_{p}(x)|^2_{f(p)}$ for every $0<\eta<\delta$. It is possible since $\gamma$ is a regular curve and $f$ is a diffeomorphism. \\
+  (For instance, choose $\delta_1>0$ to make $$\abs[\big]{|\gamma'(a+\eta)|_{\gamma(a+\eta)}^2 - |\gamma'(a)|_{\gamma(a)}^2}<\epsilon/3,$$ and choose $\delta_2>0$ to make $$\abs[\big]{|df_{\gamma(a+\eta)}(\gamma'(a + \eta))|_{(f\circ\gamma)(a+\eta)}^2 - |df_{\gamma(a)}(\gamma'(a))|_{(f\circ\gamma)(a)}^2}<\epsilon/3,$$ where $\epsilon = \abs[\big]{|x|_p^2 - |df_p(x)|^2_{f(p)}} $. Then, letting $\delta = \min(\delta_1,\delta_2)$, we can accomplish the desired procedure.) \\
+  After that, reparametrize $\gamma|_{[a,a+\delta]}$ with $t\colon[a,a+\delta]\to [a,b]$, $t(x) = \frac{b-a}{\delta}(x-a) + a$. Then we get a regular curve $\tilde\gamma\colon[a, b] \to S_1,$ where the property mentioned above is preserved. Now, observe that
+  \begin{align*}
+    \text{arc length}(\tilde\gamma) - \text{arc length}(f\circ \tilde\gamma) &= \text{arc length}(\gamma|_{[a,a+\delta]}) - \text{arc length}(f\circ \tilde\gamma|_{[a,a+\delta]})
+    \\ &= \int_0^{\delta} |\gamma'(a + \eta)|_p^2 - |df_{\gamma(a + \eta)}(\gamma'(a + \eta))|_{f(\gamma(a + \eta))} \,d\eta
+  \end{align*}
+  has the same sign with $|x|_p^2 - |df_{p}(x)|^2_{f(p)}$, which is nonzero. Therefore, $f$ does not preserve the arc length of $\tilde\gamma$, which completes the proof.
+}
+
+\newpage 
+\solution[4]{
+  (Exercise 4.28)
+
+  Let the orientation of the monkey saddle at $(u, v, u^3-3v^2u)$ have the same direction with $(1, 0, 3u^2 - 3v^2) \times (0, 1, -6uv) = (3v^2-3u^2, 6uv, 1).$ Now, the Gauss map is as follows:
+  $$N(p) = \frac{(3v^2-3u^2, 6uv, 1)}{\sqrt{1 + 9(u^2+v^2)^2}}.$$
+  Then, we can calculate the Weingarten map at the origin is as follows: pick a vector $v = (x, y, 0) \in T_{\mathbf 0}S$ with $x^2+y^2=1$ and let $\gamma(t) = t\mathbf v$, then we have $\gamma(0) = \mathbf 0$ and $\gamma'(0) = \mathbf v$ Now, we have 
+  \begin{align*}
+    dN_{\mathbf 0} (v) &= (M\circ \gamma)'(0) 
+    \\&= \frac{d(N(tx, ty, 0))}{dt}\bigg|_{t=0} 
+    \\&= \frac{d}{dt} \frac{(3(ty)^2-3(tx)^2, 6t^2xy, 1)}{\sqrt{1 + 9t^2(x^2+y^2)^2}}\bigg|_{t=0}
+    \\&= \frac{d}{dt} \frac{(3(y^2-x^2)t^2, 6xyt^2, 1)}{\sqrt{1 + 9t^2}}\bigg|_{t=0}
+    \\&= \paren{ \frac{3(y^2-x^2)t(2+9t^2) }{\sqrt{1+9t^2}^3}, \frac{6xyt(2+9t^2) }{\paren{\sqrt{1+9t^2}}^3}, -\frac{9t}{\paren{\sqrt{1+9t^2}}^3} }\Bigg|_{t=0} 
+    \\&= (0,0,0).
+  \end{align*}
+  Therefore, $dN_p$ is the zero map and hence
+  $ \mathcal W_{\mathbf 0} = 0. $ Finally, we have $k_1 = k_2 = 0$ so the Gaussian curvature of the monkey saddle at the origin $\mathbf 0$ equals zero.
+
+  Using Proposition 4.14., we can found the following proposition: If $K(p)=0$, for any (open) neighborhood $U$ of $p$ in $S$, $U \setminus \{p\}$ cannot lie entirely in one side of the plane $p + T_p S$. The proof is simple: if not, either $K(p)>0$ or $K(p)<0$, where the Proposition 4.14. says both cases are impossible. In case of the monkey saddle, the above proposition (clearly) works, seen from the picture.
+}
+
+\end{document}

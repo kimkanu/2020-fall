@@ -1,0 +1,132 @@
+\documentclass{homework}
+\usepackage{macros-common}
+\usepackage{amsmath, amsfonts, xcolor, cancel}
+\usepackage{enumitem}
+\usepackage{mathtools}
+% \usepackage{lua-visual-debug}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\title{Final Exam}
+\subject{MAS321 Introduction to Differential Geometry}
+\studentid{20170058}
+\name{Keonwoo Kim}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\def\qed{\hfill$\square$}
+\let\bs\boldsymbol
+\def\'{\ensuremath{^{\mathrlap{O}\mkern4.5mu\prime\mkern3mu}}}
+
+\solution{
+  [Exercise 3.63]
+  Let $N$ be an orientation for $S$, and $p\in S$. Let $v_1, v_2$ be a positively oriented basis on $T_p S$. Then $df_p\colon T_p S \to T_{f(p)}\tilde S$ is an isomorphism between two tangent spaces. Define $\tilde N(f(p))$ as the unit vector orthogonal to $T_{f(p)}\tilde S$ at $f(p)$, which is parallel to $df_p(v_1)\times df_p(v_2)$. Note that $v_1$ and $v_2$ can be chosen smoothly for $p$, so $df_p(v_1)\times df_p(v_2)$ is also smooth with this choice. Thus, $\tilde N(f(p)) = \frac{df_p(v_1)\times df_p(v_2)}{|df_p(v_1)\times df_p(v_2)|}$ becomes a well-defined orientation for $\tilde S$.
+}
+
+\newpage
+
+\solution{
+  [Exercise 3.74]
+  The surface can be parametrized with $\sigma(u,v) = (u, e^{-u}\cos v, e^{-u}\sin v)$ for $u\in(0,\infty)$ and $v\in[0, 2\pi).$ $$\sigma_u(u,v) = (1,-e^{-u}\cos v, e^{-u}\sin v)$$ and $$\sigma_v(u,v) = (0, -e^{-u}\sin v, e^{-u}\cos v)$$ so that $\|d\sigma_{(u,v)}\| = e^{-u} \sqrt 2$. Therefore,
+  $$Area =\int_0^\infty \int_0^{2\pi} \sqrt 2 e^{-u}\,dv\,du = 2\sqrt 2 \pi,$$
+  which is finite.
+}
+
+\newpage
+
+\solution{
+  [Exercise 3.106]
+  Let $\sigma(t, s) = s\cdot \gamma(t)$. Then,
+  \begin{align*}
+    E &= s^2 |\gamma'(t)|^2,\\
+    F &= s\angl{\gamma'(t),\gamma(t)},\\
+    G &= |\gamma(t)|^2.
+  \end{align*}
+  So, the first fundamental form of the generalized cone is
+  $$ \mathcal F_1 = s^2 |\gamma'(t)|^2\,dt^2 + 2s\angl{\gamma'(t),\gamma(t)}\,dt\,ds +|\gamma(t)|^2\,ds^2. $$
+}
+
+\newpage
+
+\solution{
+  [Exercise 4.9] Since $S$ is an oriented regular surface, we can think of principal curvatures of $S$ at $p$, say $k_1$ and $k_2$. Then $$H^2 = \paren{\frac{k_1+k_2}2}^2 = \paren{\frac{k_1-k_2}2}^2 + k_1k_2 \ge K.$$
+}
+
+\newpage
+
+\solution{
+  [Exercise 4.11] Since $\gamma$ is a unit-speed curve in $S^2$, we have $N(\gamma(t)) = \gamma(t)$ (since $N$ is chosen to point outward). Therefore,
+  \begin{align*}
+    \angl{\gamma(t)\times \gamma'(t),\gamma''(t)} 
+    &= \angl{\gamma(t) \times \gamma'(t), \kappa_n(t)\cdot \gamma(t) + \kappa_g(t) \cdot R_{90}(\gamma'(t))} \\&= \kappa_g(t)\angl{\gamma(t) \times \gamma'(t), R_{90}(\gamma'(t))}
+  \end{align*}
+  as $\gamma(t)$ and $\gamma(t) \times \gamma'(t)$ are orthogonal. Since $\gamma'(t), R_{90}(\gamma'(t))$, and $\gamma(t)=N(\gamma(t))$ form an (positively oriented) orthonormal basis of $\RR^3$, we have $\gamma(t) \times \gamma'(t) = R_{90}(\gamma'(t))$. Therefore, $\angl{\gamma(t) \times \gamma'(t), R_{90}(\gamma'(t))}=1$ and hence we have $\angl{\gamma(t)\times \gamma'(t),\gamma''(t)} =\kappa_g(t)$.
+}
+
+\newpage
+
+\solution{
+  [Exercise 4.32] Let $v_1,v_2$ be an orthonormal basis of $T_p S$ with respect to which $\mathcal W_p$ is represented by a diagonal matrix. Note that $II_p$ is the quadratic form associated to $\mathcal W_p$. Then, taking a point on the circle described in the problem, $v=(\cos t) v_1 + (\sin t) v_2 \in T_p S$ with $0\le t<2\pi$, we have $$ II_p(v) = \angl{\mathcal W_p(v),v}  = k_1 \cos^2 t + k_2 \sin^2 t.$$
+  Therefore, we the average of the normal curvature of $S$ at $p$ is
+  $$ \frac{1}{2\pi} \int_0^{2\pi }(k_1\cos^2 t + k_2\sin^2t)\,dt = \frac{k_1+k_2}{2} = H(p). $$
+}
+
+\newpage
+
+\solution{
+  [Exercise 5.6] Let $\gamma$ and $\tilde\gamma$ be two geodesics and $\gamma(t_0) = \tilde\gamma(t_0)$. We will show first that $\gamma$ and $\tilde\gamma$ are the same on $[t_0,\infty) \cap I$. Define $t_1 = \inf\{t\in I: t\ge t_0,\ \gamma(t)\ne \tilde\gamma(t)\}$. Note that $t_1$ is well-defined since there is an intersection of $\gamma$ and $\tilde\gamma$. If $t_1 \notin I$, then $\gamma$ and $\tilde \gamma$ are the same on $[t_0,t_1) = [t_0,\infty) \cap I$. If $t_1=\sup I$ and $t_1\in I$, then $\gamma$ and $\tilde \gamma$ are the same on $[t_0,t_1] = [t_0,\infty) \cap I$.  Otherwise, still $\gamma(t_1) = \tilde\gamma(t_1)$ because of the continuity of two curves. (Consider an increasing sequence $s_n\nearrow t_1$ in $[t_0,\infty)\cap I$, then $\gamma(s_n) = \tilde \gamma(s_n)$ so that $\gamma(t_1) = \lim_{n\to\infty} \gamma(s_n) = \lim_{n\to\infty}\tilde\gamma(s_n) = \tilde\gamma(t_1).$) Then, using Proposition 5.3 at $\gamma(t_1) = \tilde\gamma(t_1)$, any two geodesics with the domain $(t_1-\epsilon, t_1+\epsilon)$ should be equal where $\epsilon = \epsilon(\gamma(t_1), 1)$ is provided by the proposition. So the proposition implies that $\gamma(t)$ and $\tilde \gamma(t)$ coincide for $t\in[t_1,t_1+\epsilon)$, which contradicts to the definition of $t_1$. Therefore, $\gamma$ and $\tilde\gamma$ coincide on $[t_0,\infty) \cap I$.
+
+  Analogously, they coincide on $(-\infty, t_0] \cap I$ vice versa. This completes the proof.
+}
+
+\newpage
+
+\solution{
+  [Exercise 5.34]
+  Proposition 5.28 says that for each fixed $\theta_0$, $g(r) = r-\frac{r^3}6 K(p) + o(r^3)$ where $o(r^3)$ means the error term in little-o notation. Thus,
+  \begin{align*}
+    area(C_r(p)) &= \int_0^r \int_0^{2\pi} \sqrt{EG-F^2}\,d\theta\,d\tilde r
+    \\&= \int_0^r \int_0^{2\pi} g(\tilde r)\,d\theta\,d\tilde r 
+    \\&= \int_0^r \int_0^{2\pi}\paren{ \tilde r-\frac{\tilde r^3}6 K(p) + o(\tilde r^3)}\,d\theta\,d\tilde r
+    \\&= \int_0^r \int_0^{2\pi}\paren{ \tilde r-\frac{\tilde r^3}6 K(p) + o(\tilde r^3)}\,d\theta\,d\tilde r
+    \\&= 2\pi \frac{r^2}2 - 2\pi \frac{r^4}{24}K(p)  + o(r^4) = \pi r^2 - \pi \frac{r^4}{12}K(p) + o(r^4).
+  \end{align*}
+  as $r\to 0$.
+  As $o(r^4 )/r^4 \to 0$, we have the desired result when we express the formula above with the $K(p)$ alone on the LHS:
+  \begin{align*}
+    K(p) &=\frac{12}\pi \frac{\pi r^2 - area(C_r(p)) + o(r^4)}{r^4} 
+    \\&= \frac{12}\pi \frac{\pi r^2 - area(C_r(p))}{r^4} +o(1) 
+    \\&\longrightarrow \lim_{r\to 0} \frac{12}\pi \frac{\pi r^2 - area(C_r(p))}{r^4}.
+  \end{align*}
+
+  For the part that $\int_0^r \int _0^{2\pi} f(\tilde r,\theta)\,d\theta\,d\tilde r = o(r^4)$ if $f(r,\theta)=o(r^3)$, we can observe that for any $\epsilon>0$ there is $\delta>0$ so that $f(r,\theta) < \epsilon r^3$ for any $0\le r <\delta$, so
+  $$ \int_0^r \int _0^{2\pi} f(\tilde r,\theta)\,d\theta\,d\tilde r \le \int_0^r \int _0^{2\pi} \epsilon \tilde  r^3\,d\theta\,d\tilde r = 2\pi\epsilon r^4 $$
+  and hence $\int_0^r \int _0^{2\pi} f(\tilde r,\theta)\,d\theta\,d\tilde r$ is $o(r^4)$ since $\epsilon$ is arbitrary.
+}
+
+\newpage
+
+\solution{
+  [Exercise 5.67]
+  Let us show that $\sigma(s,t) = \gamma(t) + s\cdot \mathfrak b(t)$ makes $\gamma(t)$ a geodesic. By Lemma 5.52, $\gamma(t) = \sigma(0, t)$ is a geodesic in the surface generated by $\sigma$ if and only if
+  $$ u'' + (u')^2 \Gamma_{11}^1 + 2u'v'\Gamma_{12}^1 + (v')^2 \Gamma_{22}^1 = 0$$
+  and 
+  $$ v'' + (u')^2 \Gamma_{11}^2 + 2u'v'\Gamma_{12}^2 + (v')^2 \Gamma_{22}^2 = 0$$
+  where $u(t) = 0$ and $v(t) = t$. That is,
+  $$ \Gamma_{22}^1 = 0\quad \text{and}\quad \Gamma_{22}^2 = 0.$$ Observe that 
+  $$\sigma_{tt} =\gamma''(t) + s\cdot \mathfrak b''(t) .$$
+  By Frenet--Serret formulas, we have $\gamma''(t) = \mathfrak t'(t) = \kappa \mathfrak n(t)$. Therefore, along $\gamma(t)$, i.e., when $s=0$, we have $\sigma_{tt} = \gamma''(t) = \kappa \mathfrak n(t)$. Note that $\{\sigma_s = \mathfrak b(t), \sigma_t=\gamma'(t)=\mathfrak t(t), \mathfrak n(t)\}$ is a positively oriented orthonormal basis of $\RR^3$. Therefore, we have $N = \mathfrak n(t)$ and hence $\sigma_{tt} = \kappa N$, which is parallel to $N$. This means $\Gamma_{22}^1=\Gamma_{22}^2=0$, i.e., $\gamma$ is a geodesic in the surface induced by $\sigma$.
+}
+
+\newpage
+
+\solution{
+  [Exercise 6.9]
+  Suppose that there are two simple closed geodesics $\gamma_1$ and $\gamma_2$ in $S$ that do not intersect. Then, they induce a region $S'$ bounded by $\gamma_1$ and $\gamma_2$ on $S$. Let $f$ be a diffeomorphism between $S$ and the unit sphere $S^2$, provided by Corollary 6.17. Then $f(\gamma_1)$ and $f(\gamma_2)$ are two curves on $S^2$ which do not intersect on $S^2$, so they induce a region which is homeomorphic to a cylinder. Therefore, $\chi(S')=0$. Now, by the global Gauss-Bonnet theorem, we have
+  $$ \iint_{S'} K\,dA + \int _{\partial S'}\kappa_g(t)\,dt + \sum \alpha_i = 0. $$
+  Note that $S'$ have no vertices on its boundary (two regular curves, which are images of $\gamma_1$ and $\gamma_2$ under $f$). Also, since $\gamma_i$ are geodesics, the second term in the LHS of the equation above is zero. Therefore, we meet $\iint_{S'} K\,dA = 0$, which is impossible since $K>0$. Therefore, any two simple closed geodesics should intersect.
+}
+
+\end{document}

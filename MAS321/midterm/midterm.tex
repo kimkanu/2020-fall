@@ -1,0 +1,158 @@
+\documentclass{homework}
+\usepackage{macros-common}
+\usepackage{amsmath, amsfonts, xcolor, cancel}
+\usepackage{enumitem}
+% \usepackage{lua-visual-debug}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\title{Midterm}
+\subject{MAS321 Introduction to Differential Geometry}
+\studentid{20170058}
+\name{Keonwoo Kim}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+\def\qed{\hfill$\square$}
+\let\bs\boldsymbol
+
+\solution{
+  [Exercise 1.43]
+
+  Without loss of generality, suppose $\gamma$ is parametrized by arc length, since the curvature does not depend on reparametrization of the curve. Since $|\gamma(t)|^2 = \angl{\gamma(t),\gamma(t)}$ has a local maximum value of $r^2$ at time $t_0$, we have $\frac{d^2}{dt}\angl{\gamma(t),\gamma(t)}|_{t_0} \le 0$, that is,
+  $$ \frac 12\frac{d^2}{dt}\angl{\gamma(t),\gamma(t)}|_{t_0}=\frac{d}{dt}\angl{\gamma(t) ,\gamma'(t)} |_{t_0} = \angl{\gamma(t_0),\gamma''(t_0)}+\angl{\gamma'(t_0),\gamma'(t_0)} = \angl{\gamma(t_0),\gamma''(t_0)}+1 \le 0. $$
+  Therefore, $\angl{\gamma(t_0),\gamma''(t_0)} \le -1$, $|\angl{\gamma(t_0),\gamma''(t_0)} |\ge 1$, so that $$\kappa(t_0) =|\gamma''(t_0)| \ge 1/|\gamma(t_0)| = 1/r.$$
+  There is no upper bound for $\kappa(t_0)$, as a circle centered at $(r-\epsilon,0)$ with radius $\epsilon$ yields a local maximum value of $r$ of a function $t\mapsto |\gamma(t)|$ while the curvature at that point is $1/\epsilon$, which can be arbitrarily large. So there is no upper bound on $\kappa$. \qed
+}
+
+\solution{
+  [Exercise 1.62]
+
+$\gamma' = (1,2t,3t^2)$, $\gamma'' = (0, 2, 6t)$, so
+$$ \kappa = \frac{|\gamma' \times \gamma''|}{\abs{\gamma'}^3} = \frac{|(6t^2,-6t,2)|}{|(1,2t,3t^2)|^3} = \frac{2\sqrt {1+9t^2+9t^4}}{(1+4t^2+9t^4)^{3/2}} .$$
+$\gamma''' = (0,0,6)$, so 
+$$ \tau = \frac{(\gamma' \times \gamma'')\cdot \gamma'''}{|\gamma' \times \gamma''|^2} = \frac{12}{4(1+9t^2+9t^4)} = \frac{3}{1+9t^2+9t^4} .$$
+This formula comes from the Exercise 1.65. \qed
+}
+
+\solution{
+  [Exercise 1.76]
+
+  Let $\kappa$ be the curvature of $\gamma$ and $\hat\kappa$ be the curvature of $\hat\gamma$. Similarly, Then, let $\tau$ be the torsion of $\gamma$ and $\hat\tau$ be the torsion of $\hat\gamma$.$$|\gamma'(t)| = \sqrt{x'(t)^2+y'(t)^2+z'(t)^2} = |\hat\gamma'(t)|,$$ $$\gamma'\times\gamma'' =(y'z''-y''z', z'x''-z''x', x'y''-x''y') ,$$
+  $$\hat\gamma'\times \hat\gamma'' = (-x'y''+x''y', -y'z''+y''z', z'x'' - z''x')$$ so that
+  $\abs{\gamma'\times\gamma''} = \abs{\hat\gamma'\times\hat\gamma''}$ and hence
+  $$\kappa = \frac{|\gamma' \times \gamma''|}{\abs{\gamma'}^3} = \frac{|\hat\gamma' \times \hat\gamma''|}{\abs{\hat\gamma'}^3}  =\hat\kappa. $$
+  Similarly, for the torsion,
+  $$ (\gamma' \times \gamma'')\cdot \gamma''' = \det(\gamma',\gamma'',\gamma''') = \begin{vmatrix}
+    x&x'&x''\\y&y'&y''\\z&z'&z''
+  \end{vmatrix} = \begin{vmatrix}
+    z&z'&z''\\x&x'&x''\\y&y'&y''
+  \end{vmatrix}=-\begin{vmatrix}
+    z&z'&z''\\x&x'&x''\\-y&-y'&-y''
+  \end{vmatrix} = -(\hat\gamma' \times \hat\gamma'')\cdot \hat\gamma''' $$
+  so that
+  $$ \hat\tau = \frac{(\hat\gamma' \times \hat\gamma'')\cdot \hat\gamma'''}{|\hat\gamma' \times \hat\gamma''|^2} = \frac{-(\gamma' \times \gamma'')\cdot\gamma'''}{|\gamma' \times \gamma''|^2} = -\tau. $$
+  In summary, $\kappa = \hat\kappa$ and $\tau = -\hat\tau.$ \qed
+}
+
+\solution{
+  [Exercise 3.5]
+
+  Let $\gamma(t) = (\gamma_1(t),\gamma_2(t))$.
+  \begin{align*}
+  (f\circ \gamma)'(t) &= \nabla f(\gamma(t))\cdot \gamma'(t) = f_u(\gamma(t))\gamma'_1(t)+ f_v(\gamma(t))\gamma'_2(t),\\
+  (f\circ \gamma)''(t) &= \gamma_1'(t)\nabla f_u(\gamma(t))\cdot \gamma'(t) + f_u(\gamma(t))\gamma_1''(t)+\gamma_2'(t)\nabla f_v(\gamma(t))\cdot \gamma'(t) + f_v(\gamma(t))\gamma_2''(t),\\
+  (f\circ \gamma)''(0) &= a(f_{uu}(q)a + f_{uv}(q)b) + \cancelto{0}{f_u(q)\gamma_1''(0)} + b(f_{vu}(q)a + f_{vv}(q)b) + \cancelto{0}{f_v(q)\gamma_2''(0)}
+  \\&= a^2f_{uu}(q) + 2ab f_{uv}(q) + b^2f_{vv}(q).
+  \end{align*} \qed
+}
+
+\solution{
+  [Exercise 3.7]
+
+  By stretching $E$ along the axes, we may find a \emph{linear} diffeomorphism $f$ from $S^2$ to $E$, which is the unit sphere in $\RR^3$ as in Example 3.14. Let $L\in O(3)$, that is a linear transformation on $\RR^3$ whose image of $S^2$ is again $S^2$. ($O(3)$ is the set of orthogonal transformations on $\RR^3$.) Then, we have a linear diffeomorphism between $E$ and $E$ itself:
+  $$ \varphi_L\colon E\to E, \quad \varphi_L = f\circ L\circ f^{-1}. $$
+  [Reason: Note that there is a 1-1 correspondence between $L$'s and $\varphi_L$'s, since $f$ is invertible. Let $\varphi$ be a linear transformation from $\RR^3$ to $\RR^3$ that restrict to a diffeomorphism from $E$ to $E$, then, since $f^{-1}\circ \varphi\circ f$ is linear and maps $S^2$ to $S^2$, it should be a linear transformation in $O(3)$.]
+  Therefore, the set of such linear transformations is
+  $$ \{ f\circ L\circ f^{-1}:L\in O(3) \};\qquad f\colon S^2\to E,\quad f(x,y,z) = (ax,by,cz). $$
+  There is no difference on whether $a,b,c$ are distinct or not. In particular when $a=b=c$, the above set coinsides with $O(3)$.
+}
+
+\solution{
+  [Exercise 3.12]
+
+  Extend $\gamma$ to a periodic function on $\RR$, by defining $\gamma_{\text{new}}(t) = \gamma(\tilde t)$, where $\tilde t = t + k(a,b)$ for some integer $k$ and satisfying $\tilde t \in [a,b)$. Write $\gamma_{\text{new}}$ as just $\gamma$ with an abusing of notation. 
+  \begin{enumerate}[label={(\arabic*)}]
+    \item Note $d \varphi_{(t,x,y)} = ((1-x\kappa)\mathfrak t -y\tau\mathfrak n + x\tau\mathfrak b, \mathfrak n, \mathfrak b)$, from Frenet--Serret formula. So, the Jacobian matrix of $\varphi$ does not vanish whenever $|x|<1/\kappa$. So, by the inverse function theorem, we can find $\epsilon_t>0$ and $U_t\ni t$, an open set in $\RR$, such that $\varphi$ is a diffeomorphism onto $U_t\times B_{\epsilon_t}$ from the image of this under $\varphi$. Since $[a,b]$ is compact, we can find a finite numbers of $t$, namely $t_1,\dots,d_k$ such that $\{U_{t_i}:i=1,\dots,k\}$ covers $[a,b]$ entirely. Then, letting $\epsilon = \min(\epsilon_1,\dots,\epsilon_k,\delta/2)/2$ where $\delta$ denote the Lebesgue number of the open covering $\{U_t:t\in[a,b]\}$, any open ball of radius $\epsilon$ is entirely contained in one of $U_t$'s, so by gluing those open neighborhoods, we can find a smooth inverse of $\varphi$ on $U\times B_{2\epsilon}$, where $U$ is an open set containing $[a,b]$ and the smoothness comes from the inverse function theorem.
+    \item Since $\varphi\colon U\times B_{2\epsilon}$ is diffeomorphic, by restricting, we have $\phi$ is a diffeomorphism.
+    \item Suppose not, then there is either a point $p\in S_\epsilon$ where $\operatorname{dist}(p,C)\ne \epsilon$, or there is a point satisfying $\operatorname{dist}(p,C)= \epsilon$ while $p\notin S_\epsilon$. 
+    
+    Assume the first. Then $p = \phi(t,\theta)$ for some $t\in[a,b]$ and $\theta\in[0,2\pi]$. Since $\operatorname{dist}(p,\gamma(t)) = \epsilon$, we obtain $\operatorname{dist}(p,C)<\epsilon$, as it cannot be greater than $\epsilon$. Let $\gamma(t_0)$ be the nearest point on $C$ from $p$, then we have $p=\varphi(t_0,x, y)$ for some $t_0\in[a,b]$ and $(x,y)\in B_\epsilon$. But this contradicts to that $p$ is the boundary point of the image of $\varphi_\epsilon$.
+    
+    Assume the second: there is a point satisfying $\operatorname{dist}(p,C)= \epsilon$ while $p\notin S_\epsilon$. Then, letting $\gamma(t)$ be the nearest point on $C$ from $p$, $\mathfrak t(t)$ should be perpendicular to $p-\gamma(t)$, since $\frac{d}{dt}\angl{p-\gamma(t),p-\gamma(t)} = \angl{p-\gamma(t),\mathfrak t(t)}=0$. Therefore, there exists $\theta$ such that $p-\gamma(t) = (\epsilon\cos\theta)\mathfrak n + (\epsilon\sin\theta)\mathfrak b$, which is a contradiction.
+
+    Therefore, $S_\epsilon = \{p\in\RR^3:\operatorname{dist}(p,C)=\epsilon\}$.
+  \end{enumerate}
+}
+
+\solution{
+  [Exercise 3.14]
+
+  Let us define $\varphi\colon U\to \{ (x,y,z):x^2+y^2=1\} $ as 
+  $$ \varphi(x, y) = \paren{\frac{x}{\sqrt{x^2+y^2}}, \frac{y}{\sqrt{x^2+y^2}}, \log\sqrt{x^2+y^2}}.$$
+  Note that this is well-defined as $\sqrt{x^2+y^2}\ne 0$, and the square sum of the first and the second coordinate of $\varphi(x,y)$ is 1. Let us show $\varphi$ is actually a diffeomorphism.
+
+  First, $\varphi$ is clearly differentiable, since it is a composition of differentiable functions. Second, $\varphi$ has an inverse function, namely
+  $$ \psi\colon \{ (x,y,z):x^2+y^2=1\}\to U,\quad \psi(x,y,z) = (xe^z, ye^z),$$
+  which is also differentiable. Therefore, $\varphi$ is a diffeomorphism between $U=\mathbb R^2-\{(0,0)\}$ and $\{ (x,y,z):x^2+y^2=1\} $, indicating that the given cylinder can be covered by a single surface patch from $U$. \qed
+}
+
+\solution{
+  [Exercise 3.18]
+
+  \begin{enumerate}[label={(\arabic*)}]
+    \item Following the problem, assume $\gamma$ is parametrized by arc length, $n$ is a unit vector, and by applying a rigid motion, assume $P$ equals the $xy$-plane. Consider an tubular $\epsilon$-neighborhood of the curve $\gamma$:
+    $$ E = \{\gamma(t) + \eta N(t): \eta\in (-\epsilon,\epsilon), N(t) = R_{90}(\gamma'(t)) )\} $$
+    where $\varphi$ being a diffeomorphism from $(-\epsilon,\epsilon)\times (a,b)$ onto its image and being injective on $(-\epsilon,\epsilon)\times [a,b)$, for some $0<\epsilon\le 1$.
+
+    Let $D $ be the standard cylinder, and let $$F = \{ (x,y,z):1-\epsilon<\sqrt{x^2+y^2}<1+\epsilon, z\in\RR \}$$ be a tubular neighborhood of $D$, as in Exercise 3.11. Define a map as follows:
+    $$ f\colon F\to E,\qquad f((1+\eta)\cos\theta,(1+\eta)\sin\theta,z) = \gamma(t) + \eta N(t) + zn, $$
+    where $t = a + (b-a)\theta/(2\pi)$ and $\eta \in (-\epsilon,\epsilon)$. Then $f$ becomes a diffeomorphism, as $(t,\eta)\mapsto \gamma(t) + \eta N(t)$ is a diffeomorphism, $z\mapsto z n$ is also a diffeomorphism from a straight line to a straight line,and $(t,\eta)\mapsto \gamma(t) + \eta N(t)$ runs on $xy$-plane while $z\mapsto z n$ runs over the $z$-axis. Therefore, $f$ is a diffeomorphism from $F$ to $E$. Therefore, by restricting $f$ on $C$, we get a diffeomorphism from $D$ to $C$, the standard cylinder.
+    \item The projection of $\tilde C$ should not self-intersect. If so, let $p$ and $q$ be those points, then there is a real number $k$ satisfying $p-q = kn$, which violates the bijectivity. Otherwise, construct a generalized cylinder $C = \{ \gamma(t) + sn:t\in[a,b],s\in\RR\}$ where $\gamma(t)=\tilde\gamma(t) -\angl{\tilde\gamma(t),n}n$ is the orthogonal projection of $\tilde\gamma(t)$ onto a plane orthogonal to $n$ passing $(0,0,0)$. Since $\gamma$ is a plane curve, it is well-defined by (1). Now, observe that $\tilde C = C$ as in (3) below. Thus, $\tilde C$ will be a regular surface diffeomorphic to the standard cylinder if the projection of $\tilde C$ should not self-intersect.
+    \item \begin{align*}
+      \tilde C = \{\tilde \gamma(t) + sn:t\in[a,b],s\in\RR\} &= \{\tilde \gamma(t) + (s-\angl{\tilde \gamma(t),n})n:t\in[a,b],s\in\RR\} \\&= \{\gamma(t)+sn:t\in[a,b],s\in\RR\}=C.
+    \end{align*}
+    Since $\angl{\gamma(t),n}=\angl{\tilde \gamma(t)} - \angl{\tilde \gamma(t)}\angl{n,n} = 0$, the trace of $\gamma$ lies in the plane $P$ containing $(0,0,0)$ with normal vector $n$. This completes the proof.
+  \end{enumerate}
+}
+
+\solution{
+  [Exercise 3.21]
+
+  It is enough to follow the proof of Theorem 3.27. By hypothesis, one of the two partial derivative of $f$ at $p$ is nonzero. Assume without loss of generality, that $\frac{\partial f}{\partial y}(p)\ne 0$. Otherwise, rotate the domain in order to make the assumption hold. Define $\psi\colon U\to \RR^2$ as $\psi(x,y) = (x, f(x,y))$. The Jacobian matrix for $\psi$ at $p$ is
+  $$ d\psi_p = \begin{pmatrix}1 & 0 \\ f_x(p) & f_y(p)\end{pmatrix}, $$
+  where $\det(d\psi_p) = f_y(p)\ne 0.$ By the inverse function theorem, there exists a neighborhood $\tilde U$ of $p$ in the preimage of $C=f^{-1}(\lambda)$ and a neighborhood $W$ of $\psi(p)$ where $\psi\colon \tilde U\to W$ is invertible with smooth inverse $\psi^{-1}\colon W\to \tilde U$. When $\psi(x,y_0) = (x,w_0)$ where $(x,y_0)\in\tilde U$ and $(x,w_0)\in W$, define $\psi_y^{-1}(w_0) = y_0$. Let $\mathcal U = \{x:(x,y)\in\tilde U \text{ for some }y\}$, then $\mathcal U\subseteq \RR $ is an open set since it is the projection of an open set $\tilde U$ onto the $x$-axis. Now, define
+  $$h\colon\mathcal U\to \RR,\qquad h(x) = \psi_y^{-1}(x,y), $$
+  which is the height of the unique point in $\tilde U$ above $x$, where the temperature equals $\lambda$. Note that $C\cap \tilde U = \{(x, h(x)):x\in\mathcal U\}$, which is a graph of $h$. Therefore, it is diffeomorphic to the domain $\mathcal U$, by the diffeomorphism $h$, by Lemma 3.17. Therefore, $C\cap \tilde U$ is an open neighborhood of $p$ in $C$, which is the trace of a regular plane curve $(x, h(x)): x\in\mathcal U$. This completes the proof. \qed
+}
+
+\solution{
+  [Exercise 3.24]
+
+  Let $q=(s,t)\in U$. Now,
+  $$ d\sigma_q = \begin{pmatrix}
+    (\sigma_1)_s(q) & (\sigma_1)_t(q)\\
+    (\sigma_2)_s(q) & (\sigma_2)_t(q)\\
+    (\sigma_3)_s(q) & (\sigma_3)_t(q)
+  \end{pmatrix} = \begin{pmatrix}
+    |&|\\
+    \gamma'(t) & \gamma'(t) + s\gamma''(t)\\
+    |&|
+  \end{pmatrix} . $$
+  This matrix has the same rank as $\begin{pmatrix}\gamma'(t) & \gamma''(t)\end{pmatrix}$ by an elementary row operation, as $s\ne 0$. Suppose it has rank less than 2, then $\gamma'(t)$ and $\gamma''(t)$ are linearly dependent so that $\gamma'\times\gamma'' = \mathbf 0$, which contradicts to the assumption that the curvature of $\gamma$ is nowhere-vanishing. Therefore, $\begin{pmatrix}\gamma'(t) & \gamma''(t)\end{pmatrix}$ should have rank 2, hence so is $d\sigma_q$. \qed
+}
+
+
+\end{document}

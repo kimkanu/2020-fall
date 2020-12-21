@@ -1,0 +1,79 @@
+\documentclass{homework}
+% \usepackage{lua-visual-debug}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{ulem}
+\usepackage{macros-common}
+\usepackage[bb]{macros-prob}
+
+\title{Homework \#2}
+\subject{CS341 Introduction to Computer Networks}
+\studentid{20170058}
+\name{Keonwoo Kim}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\parindent=0pt
+
+\solution{
+  a. The total amount of time to get the IP address is $RTT_1+\cdots +RTT_n$. Once the IP address is known, $RTT_0$ elapses to make the TCP connection and another $RTT_0$ is needed to receive the small object ignoring the transmission time. Therefore, the total response time is
+  $$ 2RTT_0 + RTT_1+\cdots + RTT_n. $$
+
+  b. In addition to the time elapsed in `a.', we need $8\cdot 2 RTT_0$ to do the following 8 times: make a TCP connection, request and receive the object. Therefore, we need $18RTT_0 + RTT_1+\cdots + RTT_n.$
+
+  c. In addition to the time elapsed in `a.', we need $2\cdot 2 RTT_0$ to do the following 2 times: make a TCP connection, request and receive objects parallelly (max 5 objects). Therefore, we need $6RTT_0 + RTT_1+\cdots + RTT_n.$
+
+  d. In addition to the time elapsed in `a.', we need $RTT_0$ request and receive 8 objects since the connection have made in `a.' Therefore, we need $3RTT_0 + RTT_1+\cdots + RTT_n$ in total.
+}
+
+\solution{
+  a. Bob's claim is possible, as long as there are peers staying in the large swarm for a long time enough to receive the file completely.
+
+  b. With those computers, ask for different chunks of the file, and merge them together. In this way, theoretically, Bob can fasten the download to the multiple of the number of computers Bob uses.
+}
+
+\solution{
+  \begin{enumerate}
+    \item Initially sender sends a packet with sequence number 0, and move to the state “wait for ACK or NAK 0.”
+    \item The receiver receives the packet 0 and sends the ACK, moving to the state “wait for 1 from below.”
+    \item Suppose that sender receives the corrupted ACK for packet 0. Since the sender received the corrupted ACK, it sends the packet 0 again.
+    \item The receiver sends a NAK as it received packet with sequence number 0 again while the receiver state is “wait for 1 from below.”
+    \item The sender sends the packet with sequence number 0 again as it received a NAK.
+    \item The receiver sends NAK again to sender.
+    \item ...
+  \end{enumerate}
+}
+
+\solution{
+  a. Bob's claim is possible, as long as there are peers staying in the large swarm for a long time enough to receive the file completely.
+
+  b. With those computers, ask for different chunks of the file, and merge them together. In this way, theoretically, Bob can fasten the download to the multiple of the number of computers Bob uses.
+}
+
+\solution{
+  a. \begin{itemize}
+    \item GBN: \begin{itemize}
+      \item The host A sends 9 segments: \texttt{1, 2, 3, 4, 5, 2, 3, 4, 5}.
+      \item The host B sends 8 \rlap{ACK's}\hphantom{segments}: \texttt{1, \ \ \ 1, 1, 1, 2, 3, 4, 5}.
+    \end{itemize}
+    \item SR: \begin{itemize}
+      \item The host A sends 6 segments: \texttt{1, 2, 3, 4, 5, 2}.
+      \item The host B sends 5 \rlap{ACK's}\hphantom{segments}: \texttt{1, \ \ \ 3, 4, 5, 2}.
+    \end{itemize}
+    \item TCP: \begin{itemize}
+      \item The host A sends 6 segments: \texttt{1, 2, 3, 4, 5, 2}.
+      \item The host B sends 5 \rlap{ACK's}\hphantom{segments}: \texttt{2, \ \ \ 2, 2, 2, 6}.
+    \end{itemize}
+  \end{itemize}
+  b. Due to the fast retransmit of TCP, TCP is the fastest among three protocols while SR also achieves the same amount of segments sent between A and B.
+}
+
+\solution{
+  Since the link capacity is only 100 Mbps, the host A's sending rate can be at most 100 Mbps. Still, the speed that the buffer is filled is much faster than one that the host B removes packets from the buffer. Therefore, the receive buffer fills up at a rate of 50 Mbps approximately.
+  
+  When the buffer is full, the host B signals to the host A to stop sending data by setting \texttt{rwnd = 0}. The host A then stops sending until it receives a TCP segment with \texttt{rwnd > 0}. Hence the host A will repeat to stop and start sending depending on the value of \texttt{rwnd}. On average, the long-term rate of the transmission is roughly 50 Mbps.
+}
+
+
+\end{document}
